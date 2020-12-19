@@ -14,13 +14,15 @@ class CreatePelangganTabel extends Migration
     public function up()
     {
         Schema::create('tbpelanggan', function (Blueprint $table) {
-            $table->id('KodePelanggan');
-            $table->integer('NoPelanggan');
-            $table->integer('NoMeter');
-            $table->integer('KodeTarif');
-            $table->string('NamaLengkap');
-            $table->string('Telp');
-            $table->string('Alamat');
+            $table->id();
+            $table->foreignId('tarif_id')->unsigned();
+            $table->integer('meter_no');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
+            $table->timestamps();
+            $table->foreign('tarif_id')->references('id')->on('tbtarif')->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,6 @@ class CreatePelangganTabel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanggan_tabel');
+        Schema::dropIfExists('tbpelanggan');
     }
 }

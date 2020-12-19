@@ -14,11 +14,12 @@ class CreatePembayaranTable extends Migration
     public function up()
     {
         Schema::create('tbpembayaran', function (Blueprint $table) {
-            $table->id('KodePembayaran');
-            $table->integer('KodeTagihan');
-            $table->timestamps('TglBayar');
-            $table->double('JumlahTagihan');
-            $table->string('Status');
+            $table->id();
+            $table->foreignId('bill_id')->unsigned();
+            $table->string('payment_via');
+            $table->timestamps();
+            $table->foreign('bill_id')->references('id')->on('tbtagihan')->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

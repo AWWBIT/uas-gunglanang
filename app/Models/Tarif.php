@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tbtarif extends Model
+class Tarif extends Model
 {
     use HasFactory;
     protected $table = 'tbtarif';
+    protected $fillable = [
+        'daya', 'tarif_perkwh', 'beban'
+    ];
 }

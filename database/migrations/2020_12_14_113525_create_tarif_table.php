@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoginTabel extends Migration
+class CreateTarifTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateLoginTabel extends Migration
      */
     public function up()
     {
-        Schema::create('tblogin', function (Blueprint $table) {
-            $table->id('KodeLogin');
-            $table->string('Username');
-            $table->string('Password');
-            $table->string('NamaLengkap');
-            $table->string('Level');
+        Schema::create('tbtarif', function (Blueprint $table) {
+            $table->id();
+            $table->integer('daya');
+            $table->integer('tarif_perkwh');
+            $table->integer('beban');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateLoginTabel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('login_tabel');
+        Schema::dropIfExists('tbtarif');
     }
 }

@@ -14,15 +14,16 @@ class CreateTagihanTable extends Migration
     public function up()
     {
         Schema::create('tbtagihan', function (Blueprint $table) {
-            $table->id('KodeTagihan');
-            $table->string('NoTagihan');
-            $table->integer('KodePelanggan');
-            $table->string('TahunTagih');
-            $table->string('BulanTagij');
-            $table->string('JumlahPemakaian');
-            $table->double('TotalBayar');
-            $table->string('Status');
+            $table->id();
+            $table->foreignId('customer_id')->unsigned();
+            $table->string('bill_year');
+            $table->string('bill_month');
+            $table->string('bill_kwhusage');
+            $table->double('bill_total');
+            $table->string('bill_status');
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('tbpelanggan')->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
